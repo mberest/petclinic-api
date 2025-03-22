@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "us-west-1"
+  region = "us-east-1"
 }
 
 resource "aws_security_group" "web_security_group" {
@@ -53,7 +53,7 @@ resource "aws_security_group" "web_security_group" {
 resource "aws_instance" "test-instance" {
   ami           = data.aws_ami.instance_ami.id
   instance_type = "t2.micro"
-  key_name   = "JenkinsInstaceKeys"
+  key_name   = "JenkinsKeys"
   vpc_security_group_ids = [aws_security_group.web_security_group.id]
 
   tags = {
