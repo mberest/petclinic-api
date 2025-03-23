@@ -134,8 +134,14 @@ pipeline
                  NEW_IP = sh (returnStdout: true, script: "eval ${FindInstancePublicIP}");
                  echo "New IP is ${NEW_IP}";
 
-                 NEW_IP = NEW_IP.replaceAll("[\r\n]+","");
-
+                 // NEW_IP = NEW_IP.replaceAll("[\r\n]+","");
+                
+                  NEW_IP = NEW_IP.replaceAll("[\r\n]+","__end__");
+                  def index = NEW_IP.indexOf("__end__");
+                  if (index != -1) {
+                      NEW_IP = NEW_IP.substring(0, index)
+                  }  
+                
                  echo "New IP is ${NEW_IP}";
                  echo "";
 
